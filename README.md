@@ -3,9 +3,12 @@
 https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html-single/infrastructure/#onpremises-installation
 
 Pre-req
+====================
 install openshift. Make sure you have PVs
 https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html-single/infrastructure/#configure_nodes_and_entitlements
 
+Get the template
+====================
 subscription-manager register --username=$RHSM_USER --password=$RHSM_PASS
  
 
@@ -28,7 +31,13 @@ saved to /opt/amp/templates
 
 OR just get template from
 
-https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/amp/amp.yml
+wget https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/amp/amp.yml
 
-oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param ADMIN_PASSWORD=3scaleUser
+Install AMP
+=================
+
+oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param ADMIN_PASSWORD=admin
+
+#with wildcard router
+oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param WILDCARD_POLICY=Subdomain
 
