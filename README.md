@@ -43,7 +43,7 @@ oc new-project 3scale-amp
 oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param ADMIN_PASSWORD=admin
 
 #with wildcard router
-oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param WILDCARD_POLICY=Subdomain
+oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param WILDCARD_POLICY=Subdomain --param ADMIN_PASSWORD=admin
 ````
 
 Take note of the passwords and tokens in the output. When the admin console is up and running, you will need the ADMIN_ACCESS_TOKEN .
