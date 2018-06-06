@@ -35,6 +35,7 @@ wget https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2
 
 Install AMP
 =================
+oc new-project 3scale-amp
 
 oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param ADMIN_PASSWORD=admin
 
