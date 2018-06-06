@@ -40,10 +40,10 @@ Install AMP
 ````
 oc new-project 3scale-amp
 
-oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param ADMIN_PASSWORD=admin
+oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param ADMIN_PASSWORD=admin --param TENANT_NAME=3scale-amp
 
 #with wildcard router
-oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param WILDCARD_POLICY=Subdomain --param ADMIN_PASSWORD=admin
+oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param WILDCARD_POLICY=Subdomain --param ADMIN_PASSWORD=admin --param TENANT_NAME=3scale-amp
 ````
 
 Take note of the passwords and tokens in the output. When the admin console is up and running, you will need the ADMIN_ACCESS_TOKEN .
