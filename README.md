@@ -56,9 +56,9 @@ Get the Access Token from Settings Widget->Personal Details->Tokens. You can add
 oc secret new-basicauth apicast-configuration-url-secret --password=https://$ACCESSTOKEN@3scale-admin.apps.$EXERNAL_IP.nip.io
 
 
-oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/apicast-gateway/apicast.yml
+oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/apicast-gateway/apicast.yml  -p LOG_LEVEL=debug
 
 #if you want to deploy a staging endpoint
-oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/apicast-gateway/apicast.yml  -p APICAST_NAME=apicast-staging 
+oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/apicast-gateway/apicast.yml  -p APICAST_NAME=apicast-staging  -p LOG_LEVEL=debug -p DEPLOYMENT_ENVIRONMENT=staging
 
 create routes as needed for any services. If wildcard router enabled on the AMP having a different one would not be necessary
