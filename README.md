@@ -12,7 +12,7 @@ Get the template
 subscription-manager register --username=$RHSM_USER --password=$RHSM_PASS
  
 
-
+````
 if [ -z "$EMP_POOL_ID" ]
 then
     EMP_POOL_ID=$(subscription-manager list --available | \
@@ -26,12 +26,14 @@ subscription-manager attach --pool=$EMP_POOL_ID
 subscription-manager repos --enable=rhel-7-server-3scale-amp-2.2-rpms
     
 yum install 3scale-amp-template
-
+````
 saved to /opt/amp/templates
 
 OR just get template from
 
+`````
 wget https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/amp/amp.yml
+````
 
 Install AMP
 =================
