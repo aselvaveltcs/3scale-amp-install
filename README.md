@@ -47,6 +47,8 @@ oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --par
 ````
 
 Take note of the passwords and tokens in the output. When the admin console is up and running, you will need the ADMIN_ACCESS_TOKEN .
+
+
 Optional: Standalone api-cast on OpenShift
 ============================
 https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html-single/deployment_options/#apicast-openshift
