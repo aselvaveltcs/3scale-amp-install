@@ -61,7 +61,10 @@ oc new-project "3scalegateway" --display-name="gateway" --description="3scale ga
 https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html-single/accounts#tokens#creating-access-tokens
 Get the Access Token from Settings Widget->Personal Details->Tokens. You can add a new one with the appropriate permissions
 
-oc secret new-basicauth apicast-configuration-url-secret --password=https://$ACCESSTOKEN@3scale-admin.apps.$EXERNAL_IP.nip.io
+#test
+curl -k -v https://${ACCESS_TOKEN}@${TENANT_NAME}-admin.apps.${EXTERNAL_IP}.nip.io/admin/api/services.json | python -m json.tool
+
+oc secret new-basicauth apicast-configuration-url-secret --password=https://${ACCESS_TOKEN}@${TENANT_NAME}-admin.apps.${EXTERNAL_IP}.nip.io
 
 
 oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/apicast-gateway/apicast.yml  -p LOG_LEVEL=debug
