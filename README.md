@@ -36,7 +36,9 @@ wget https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2
 `````
 
 OR via RPM page
+
 AMP - https://access.redhat.com/downloads/content/3scale-amp-template/2.2.0-10.el7/x86_64/fd431d51/package
+
 Template - https://access.redhat.com/downloads/content/3scale-amp-apicast-gateway-template/2.2.0-4.el7/x86_64/fd431d51/package
 
 Install AMP
