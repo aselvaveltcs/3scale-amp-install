@@ -52,6 +52,8 @@ oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --par
 oc new-app --file amp.yml --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param WILDCARD_POLICY=Subdomain --param ADMIN_PASSWORD=admin --param TENANT_NAME=3scale-amp
 ````
 
+Alternatively: You can use select the template from the Service Catalog wizard on the OpenShift console
+
 Take note of the passwords and tokens in the output. When the admin console is up and running, you will need the ADMIN_ACCESS_TOKEN .
 
 
