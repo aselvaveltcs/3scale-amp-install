@@ -29,14 +29,14 @@ yum install 3scale-amp-template
 ````
 saved to /opt/amp/templates
 ````
-export 3SCALE_AMP_TEMPLATE=/opt/amp/templates/amp.yml
+export AMP_TEMPLATE=/opt/amp/templates/amp.yml
 ````
 
 OR just get template from
 
 `````
 wget https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/amp/amp.yml
-export 3SCALE_AMP_TEMPLATE=mp.yml
+export AMP_TEMPLATE=mp.yml
 `````
 
 OR via RPM page
@@ -50,10 +50,10 @@ Install AMP
 ````
 oc new-project 3scale-amp
 
-oc new-app --file $3SCALE_AMP_TEMPLATE --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param ADMIN_PASSWORD=admin --param TENANT_NAME=3scale-amp
+oc new-app --file $AMP_TEMPLATE --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param ADMIN_PASSWORD=admin --param TENANT_NAME=3scale-amp
 
 #with wildcard router
-oc new-app --file $3SCALE_AMP_TEMPLATE --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param WILDCARD_POLICY=Subdomain --param ADMIN_PASSWORD=admin --param TENANT_NAME=3scale-amp
+oc new-app --file $AMP_TEMPLATE --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param WILDCARD_POLICY=Subdomain --param ADMIN_PASSWORD=admin --param TENANT_NAME=3scale-amp
 ````
 
 Alternatively: You can use select the template from the Service Catalog wizard on the OpenShift console
