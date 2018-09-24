@@ -36,7 +36,7 @@ OR just get template from
 
 `````
 wget https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/amp/amp.yml
-export AMP_TEMPLATE=mp.yml
+export AMP_TEMPLATE=amp.yml
 `````
 
 OR via RPM page
