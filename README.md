@@ -1,11 +1,11 @@
-# 3scale-amp-install 2.2
+# 3scale-amp-install 2.3
 
-https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html-single/infrastructure/#onpremises-installation
+https://access.redhat.com/documentation/en-us/red_hat_3scale/2.3/html-single/infrastructure/onpremises-installation#onpremises-installation
 
 Pre-req
 ====================
 install openshift. Make sure you have PVs
-https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html-single/infrastructure/#configure_nodes_and_entitlements
+https://access.redhat.com/documentation/en-us/red_hat_3scale/2.3/html-single/infrastructure/onpremises-installation#configure_nodes_and_entitlements
 
 Get the template
 ====================
@@ -23,7 +23,7 @@ fi
 
 
 subscription-manager attach --pool=$EMP_POOL_ID
-subscription-manager repos --enable=rhel-7-server-3scale-amp-2.2-rpms
+subscription-manager repos --enable=rhel-7-server-3scale-amp-2.3-rpms
     
 yum install 3scale-amp-template
 ````
@@ -35,15 +35,15 @@ export AMP_TEMPLATE=/opt/amp/templates/amp.yml
 OR just get template from
 
 `````
-wget https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/amp/amp.yml
+wget https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.3.0.GA/amp/amp.yml
 export AMP_TEMPLATE=amp.yml
 `````
 
 OR via RPM page
 
-AMP - https://access.redhat.com/downloads/content/3scale-amp-template/2.2.0-10.el7/x86_64/fd431d51/package
+AMP -https://access.redhat.com/downloads/content/3scale-amp-template/2.3.0-2.el7_5/x86_64/fd431d51/package
 
-Template - https://access.redhat.com/downloads/content/3scale-amp-apicast-gateway-template/2.2.0-4.el7/x86_64/fd431d51/package
+Template - https://access.redhat.com/downloads/content/3scale-amp-apicast-gateway-template/2.3.0-2.el7_5/x86_64/fd431d51/package
 
 Install AMP
 =================
@@ -63,14 +63,14 @@ Take note of the passwords and tokens in the output. When the admin console is u
 
 Optional: Standalone api-cast on OpenShift
 ============================
-https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html-single/deployment_options/#apicast-openshift
+https://access.redhat.com/documentation/en-us/red_hat_3scale/2.3/html-single/deployment_options/#apicast-openshift
 
   
 ```
 oc new-project "3scalegateway" --display-name="gateway" --description="3scale gateway"
 
 #create a secret
-https://access.redhat.com/documentation/en-us/red_hat_3scale/2.2/html-single/accounts#tokens#creating-access-tokens
+https://access.redhat.com/documentation/en-us/red_hat_3scale/2.3/html-single/accounts/index#access_tokens
 Get the Access Token from Settings Widget->Personal Details->Tokens. You can add a new one with the appropriate permissions
 
 #test
@@ -79,9 +79,9 @@ curl -k -v https://${ACCESS_TOKEN}@${TENANT_NAME}-admin.apps.${EXTERNAL_IP}.nip.
 oc secret new-basicauth apicast-configuration-url-secret --password=https://${ACCESS_TOKEN}@${TENANT_NAME}-admin.apps.${EXTERNAL_IP}.nip.io
 
 
-oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/apicast-gateway/apicast.yml  -p LOG_LEVEL=debug
+oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.3.0.GA/apicast-gateway/apicast.yml  -p LOG_LEVEL=debug
 
 #if you want to deploy a staging endpoint
-oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.2.0.GA/apicast-gateway/apicast.yml  -p APICAST_NAME=apicast-staging  -p LOG_LEVEL=debug -p DEPLOYMENT_ENVIRONMENT=staging
+oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.3.0.GA/apicast-gateway/apicast.yml  -p APICAST_NAME=apicast-staging  -p LOG_LEVEL=debug -p DEPLOYMENT_ENVIRONMENT=staging
 ```
 create routes as needed for any services. If wildcard router enabled on the AMP having a different one would not be necessary
