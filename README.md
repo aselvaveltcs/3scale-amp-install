@@ -69,11 +69,13 @@ https://access.redhat.com/documentation/en-us/red_hat_3scale/2.3/html-single/dep
 ```
 oc new-project "3scalegateway" --display-name="gateway" --description="3scale gateway"
 ````
-#create a secret
+
+create a secret
 https://access.redhat.com/documentation/en-us/red_hat_3scale/2.3/html-single/accounts/index#access_tokens
+
 Get the Access Token from Settings Widget->Personal Details->Tokens. You can add a new one with the appropriate permissions
 
-#test
+test
 ````
 curl -k -v https://${ACCESS_TOKEN}@${TENANT_NAME}-admin.apps.${EXTERNAL_IP}.nip.io/admin/api/services.json | python -m json.tool
 
@@ -84,8 +86,10 @@ oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-temp
 ````
 
 if you want to deploy a staging endpoint
+
 ````
 oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.3.0.GA/apicast-gateway/apicast.yml  -p APICAST_NAME=apicast-staging  -p LOG_LEVEL=debug -p DEPLOYMENT_ENVIRONMENT=staging
-```
+
+````
 
 create routes as needed for any services. If wildcard router enabled on the AMP having a different one would not be necessary
