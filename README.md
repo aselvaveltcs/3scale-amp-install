@@ -1,4 +1,4 @@
-# 2.7 install  TODO create a new branch 
+# 3scale 2.7 install  TODO create a new branch 
 
 ## on OCP3.11
 ```
