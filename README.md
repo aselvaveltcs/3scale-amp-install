@@ -1,4 +1,6 @@
-# TODO create a new branch - 2.7 install on OCP3.11
+# 2.7 install  TODO create a new branch 
+
+## on OCP3.11
 ```
 oc new-project 3scale27
 #need to create secret
@@ -10,6 +12,18 @@ oc create secret docker-registry threescale-registry-auth \
 
 oc new-app --file https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.7-stable/amp/amp.yml --param WILDCARD_DOMAIN=apps.cnr-test.redhatgov.io --param ADMIN_PASSWORD=admin --param TENANT_NAME=3scale27  --param MASTER_NAME=master27
 ```
+## On 4.2
+```
+oc new-project 3scale27
+#need to create secret
+
+oc create secret docker-registry threescale-registry-auth \
+  --docker-server=registry.redhat.io \
+  --docker-username=<serviceaccount> \
+  --docker-password=<serviceaccountpass>
+```
+Then follow instructions here 
+https://github.com/3scale/3scale-operator/blob/master/doc/quickstart-guide.md
 
 # 3scale-amp-install 2.3
 
