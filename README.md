@@ -1,4 +1,4 @@
-# TODO create a new branch - 2.7 install
+# TODO create a new branch - 2.7 install on OCP3.11
 ```
 oc new-project 3scale27
 #need to create secret
