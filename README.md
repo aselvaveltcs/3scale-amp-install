@@ -10,9 +10,10 @@ oc create secret docker-registry threescale-registry-auth \
   --docker-username=<serviceaccount> \
   --docker-password=<serviceaccountpass>
 
-oc new-app --file https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.7-stable/amp/amp.yml \
---param WILDCARD_DOMAIN=apps.cnr-test.redhatgov.io --param ADMIN_PASSWORD=admin --param TENANT_NAME=3scale27 \
---param MASTER_NAME=master27
+oc new-app \
+--file https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.7-stable/amp/amp.yml \
+--param WILDCARD_DOMAIN=apps.cnr-test.redhatgov.io --param ADMIN_PASSWORD=admin \
+--param TENANT_NAME=3scale27 --param MASTER_NAME=master27
 ```
 ## On 4.2
 ```
