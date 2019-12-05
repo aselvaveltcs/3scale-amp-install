@@ -56,6 +56,9 @@ oc new-app --file $AMP_TEMPLATE --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io
 oc new-app --file $AMP_TEMPLATE --param WILDCARD_DOMAIN=apps.$EXTERNAL_IP.nip.io --param WILDCARD_POLICY=Subdomain --param ADMIN_PASSWORD=admin --param TENANT_NAME=3scale-amp
 ````
 
+If using wildcard router - 
+https://docs.openshift.com/container-platform/3.11/install_config/router/default_haproxy_router.html#using-wildcard-routes
+
 Alternatively: You can use select the template from the Service Catalog wizard on the OpenShift console
 
 Take note of the passwords and tokens in the output. When the admin console is up and running, you will need the ADMIN_ACCESS_TOKEN .
