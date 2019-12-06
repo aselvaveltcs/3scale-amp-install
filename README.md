@@ -1,4 +1,4 @@
-# 3scale 2.7 install  
+# 3scale 2.7 AMP install  
 
 ## on OCP3.11
 ```
@@ -10,9 +10,12 @@ oc create secret docker-registry threescale-registry-auth \
   --docker-username=<serviceaccount> \
   --docker-password=<serviceaccountpass>
 
+# modify wild card domain for the OCP cluster
+export WILDCARD_DOMAIN = apps.example.com
+
 oc new-app \
 --file https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.7-stable/amp/amp.yml \
---param WILDCARD_DOMAIN=apps.cnr-test.redhatgov.io --param ADMIN_PASSWORD=admin \
+--param WILDCARD_DOMAIN=${WILDCARD_DOMAIN}--param ADMIN_PASSWORD=admin \
 --param TENANT_NAME=3scale27 --param MASTER_NAME=master27
 ```
 ## On 4.2
@@ -29,35 +32,43 @@ Then follow instructions here
 https://github.com/3scale/3scale-operator/blob/master/doc/quickstart-guide.md
 
 
-TODO - fix for 2.7 Optional: Standalone 2.3 api-cast on OpenShift
+Standalone 2.7 api-cast on OpenShift
 ============================
-https://access.redhat.com/documentation/en-us/red_hat_3scale/2.3/html-single/deployment_options/#apicast-openshift
+https://access.redhat.com/documentation/en-us/red_hat_3scale_api_management/2.7/html/installing_3scale/installing-apicast
 
   
 ```
 oc new-project "3scalegateway" --display-name="gateway" --description="3scale gateway"
 ````
 
-create a secret
-https://access.redhat.com/documentation/en-us/red_hat_3scale/2.3/html-single/accounts/index#access_tokens
+create a secret using the instructions here
+https://access.redhat.com/documentation/en-us/red_hat_3scale_api_management/2.7/html/admin_portal_guide/tokens#access_tokens
 
-Get the Access Token from Settings Widget->Personal Details->Tokens. You can add a new one with the appropriate permissions
+Click on the gear icon in the navigation bar.
+Navigate to Personal > Tokens.
+Click Add Access Token.
+Specify a name, select one or more scopes, and choose the permission for the token.
+To save the new token, click Create Access token.
 
 test
 ````
-curl -k -v https://${ACCESS_TOKEN}@${TENANT_NAME}-admin.apps.${EXTERNAL_IP}.nip.io/admin/api/services.json | python -m json.tool
 
-oc secret new-basicauth apicast-configuration-url-secret --password=https://${ACCESS_TOKEN}@${TENANT_NAME}-admin.apps.${EXTERNAL_IP}.nip.io
+# modify wild card domain for the OCP cluster
+export WILDCARD_DOMAIN = apps.example.com
+
+curl -k -v https://${ACCESS_TOKEN}@${TENANT_NAME}-admin.${WILDCARD_DOMAIN}/admin/api/services.json | python -m json.tool
+
+oc secret new-basicauth apicast-configuration-url-secret --password=https://<APICAST_ACCESS_TOKEN>@<TENANT_NAME>-admin.<WILDCARD_DOMAIN>
 
 
-oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.3.0.GA/apicast-gateway/apicast.yml  -p LOG_LEVEL=debug
+oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.7.0.GA/apicast-gateway/apicast.yml  -p LOG_LEVEL=debug
 ````
 
 if you want to deploy a staging endpoint
 
 ````
-oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.3.0.GA/apicast-gateway/apicast.yml  -p APICAST_NAME=apicast-staging  -p LOG_LEVEL=debug -p DEPLOYMENT_ENVIRONMENT=staging
+oc new-app -f https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.7.0.GA/apicast-gateway/apicast.yml  -p APICAST_NAME=apicast-staging  -p LOG_LEVEL=debug -p DEPLOYMENT_ENVIRONMENT=staging
 
 ````
 
-create routes as needed for any services. If wildcard router enabled on the AMP having a different one would not be necessary
+create routes as needed for any services. 
