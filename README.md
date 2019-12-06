@@ -11,7 +11,7 @@ oc create secret docker-registry threescale-registry-auth \
   --docker-password=<serviceaccountpass>
 
 # modify wild card domain for the OCP cluster
-export WILDCARD_DOMAIN = apps.example.com
+export WILDCARD_DOMAIN=apps.example.com
 
 oc new-app \
 --file https://raw.githubusercontent.com/3scale/3scale-amp-openshift-templates/2.7-stable/amp/amp.yml \
@@ -54,7 +54,7 @@ test
 ````
 
 # modify wild card domain for the OCP cluster
-export WILDCARD_DOMAIN = apps.example.com
+export WILDCARD_DOMAIN=apps.example.com
 
 curl -k -v https://${ACCESS_TOKEN}@${TENANT_NAME}-admin.${WILDCARD_DOMAIN}/admin/api/services.json | python -m json.tool
 
